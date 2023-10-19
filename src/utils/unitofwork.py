@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod
 from typing import Type
 
 from src.db.db import async_session_maker
+from src.repositories.todos import TodosRepository
 from src.repositories.tokens import TokenRepository
 from src.repositories.users import UsersRepository
 
@@ -9,7 +10,7 @@ from src.repositories.users import UsersRepository
 class IUnitOfWork(ABC):
     users: Type[UsersRepository]
     tokens: Type[TokenRepository]
-    # tasks: Type[TasksRepository]
+    todos: Type[TodosRepository]
     # task_history: Type[TaskHistoryRepository]
 
     @abstractmethod
@@ -42,7 +43,7 @@ class UnitOfWork:
 
         self.users = UsersRepository(self.session)
         self.tokens = TokenRepository(self.session)
-        # self.tasks = TasksRepository(self.session)
+        self.todos = TodosRepository(self.session)
         # self.task_history = TaskHistoryRepository(self.session)
 
     async def __aexit__(self, *args):

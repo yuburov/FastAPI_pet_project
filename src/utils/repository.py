@@ -44,8 +44,10 @@ class SQLAlchemyRepository(AbstractRepository):
 
         return res.scalar_one()
 
-    async def find_all(self):
+    async def find_all(self, user_id: str = None):
         stmt = select(self.model)
+        if user_id:
+            stmt = stmt.where(self.model.user_id == user_id)
         res = await self.session.execute(stmt)
         res = [row[0].to_read_model() for row in res.all()]
         return res

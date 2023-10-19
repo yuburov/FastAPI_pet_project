@@ -1,6 +1,6 @@
-import datetime
+from datetime import datetime
 
-from sqlalchemy import String, Boolean, Integer
+from sqlalchemy import String, Boolean
 from sqlalchemy.orm import Mapped, mapped_column
 
 from src.db.db import Base
@@ -14,7 +14,7 @@ class TokenTable(Base):
     access_token: Mapped[str] = mapped_column(String(450), primary_key=True)
     refresh_token: Mapped[str] = mapped_column(String(450), nullable=False)
     status: Mapped[bool] = mapped_column(Boolean())
-    created_date: Mapped[datetime.datetime] = mapped_column(default=datetime.datetime.utcnow())
+    created_date: Mapped[datetime] = mapped_column(default=datetime.utcnow())
 
     def to_read_model(self) -> TokenCreate:
         return TokenCreate(

@@ -55,7 +55,6 @@ class AuthService:
                 return {"token_type": "Bearer", "access_token": access_token, "refresh_token": refresh_token}
             raise HTTPException(status_code=404, detail="Username not found !")
 
-
     @staticmethod
     async def refresh_service(uow: IUnitOfWork, credentials, secret_key):
         user_info = JWTRepo.extract_token(credentials, secret_key)
@@ -79,7 +78,6 @@ class AuthService:
 
             existing_token = await uow.tokens.find_one(user_id=user_id, access_token=token)
             if existing_token:
-                existing_token.status = False
                 await uow.tokens.edit_one(access_token=existing_token.access_token, data={'status': False})
                 await uow.commit()
-            return "Successfully logout"
+            return "Done"

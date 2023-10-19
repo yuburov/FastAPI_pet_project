@@ -1,15 +1,10 @@
+from src.config import JWT_SECRET_KEY
+from src.repositories.auth_repo import JWTRepo
 from src.schemas.users import UserSchemaAdd
 from src.utils.unitofwork import IUnitOfWork
 
 
 class UsersService:
-    @staticmethod
-    async def add_user(uow: IUnitOfWork, user: UserSchemaAdd):
-        user_dict = user.model_dump()
-        async with uow:
-            user_id = await uow.users.add_one(user_dict)
-            await uow.commit()
-            return user_id
 
     @staticmethod
     async def get_users(uow: IUnitOfWork):
@@ -18,7 +13,9 @@ class UsersService:
             return users
 
     @staticmethod
-    async def get_user_profile(uow: IUnitOfWork, sub: str):
+    async def get_user_profile(uow: IUnitOfWork, credentials: str):
+        token = JWTRepo.extract_token(credentials, JWT_SECRET_KEY)
+        user_id = token['sub']
         async with uow:
-            user = await uow.users.find_one(id=sub)
+            user = await uow.users.find_one(id=user_id)
             return user.to_read_model()
