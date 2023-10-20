@@ -1,5 +1,5 @@
 from src.models.todos import Todo
-from src.utils.repository import SQLAlchemyRepository
+from src.adapters.repository import SQLAlchemyRepository
 
 
 class TodosRepository(SQLAlchemyRepository):

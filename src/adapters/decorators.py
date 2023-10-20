@@ -4,7 +4,7 @@ from fastapi import HTTPException
 
 from src.config import JWT_SECRET_KEY
 from src.repositories.auth_repo import JWTRepo
-from src.utils.unitofwork import IUnitOfWork
+from src.adapters.unitofwork import IUnitOfWork
 
 
 def token_required(uow: IUnitOfWork):

@@ -6,7 +6,7 @@ from src.repositories.auth_repo import JWTBearer
 from src.schemas.todos import TodoSchema
 from src.schemas.users import ResponseSchema
 from src.services.todo_service import TodoService
-from src.utils.decorators import token_required
+from src.adapters.decorators import token_required
 
 router = APIRouter(
     prefix="/todo",

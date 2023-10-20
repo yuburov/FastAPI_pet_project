@@ -3,6 +3,7 @@ from uuid import uuid4
 from fastapi import HTTPException
 from jose import jwt
 from passlib.context import CryptContext
+from starlette.background import BackgroundTasks
 
 from src.config import JWT_SECRET_KEY, ALGORITHM
 from src.models.tokens import TokenTable
@@ -10,7 +11,8 @@ from src.models.users import User
 from src.repositories.auth_repo import JWTRepo
 from src.schemas.users import UserSchemaAdd, RequestDetails
 from src.services.token_service import TokenService
-from src.utils.unitofwork import IUnitOfWork
+from src.adapters.notifications import EmailNotifications
+from src.adapters.unitofwork import IUnitOfWork
 
 # Encrypt password
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
@@ -19,7 +21,7 @@ pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 class AuthService:
 
     @staticmethod
-    async def register_service(uow: IUnitOfWork, register: UserSchemaAdd):
+    async def register_service(uow: IUnitOfWork, background_tasks: BackgroundTasks, register: UserSchemaAdd):
 
         # Create uuid
         _users_id = str(uuid4())
@@ -37,8 +39,10 @@ class AuthService:
                     status_code=400, detail="Email already exists!")
 
             data = await uow.users.add_one(_users.to_dict())
-
+            email_notifier = EmailNotifications()
+            send_welcome_email(register, email_notifier, background_tasks)
             await uow.commit()
+
             return data.to_read_model()
 
     @staticmethod
@@ -81,3 +85,10 @@ class AuthService:
                 await uow.tokens.edit_one(access_token=existing_token.access_token, data={'status': False})
                 await uow.commit()
             return "Done"
+
+
+def send_welcome_email(user, email_notifier, background_task):
+    destination = user.email
+    subject = "Сообщение о регистрации"
+    welcome_message = f"Здравствуйте, {user.username}! Добро пожаловать на наш сайт! Спасибо за регистрацию."
+    background_task.add_task(email_notifier.send, destination, subject, welcome_message)

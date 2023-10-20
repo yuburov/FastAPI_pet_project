@@ -1,7 +1,6 @@
 from src.config import JWT_SECRET_KEY
 from src.repositories.auth_repo import JWTRepo
-from src.schemas.users import UserSchemaAdd
-from src.utils.unitofwork import IUnitOfWork
+from src.adapters.unitofwork import IUnitOfWork
 
 
 class UsersService:

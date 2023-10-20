@@ -4,7 +4,7 @@ from typing import List
 
 from src.repositories.auth_repo import JWTRepo
 from src.schemas.todos import TodoSchema
-from src.utils.unitofwork import IUnitOfWork
+from src.adapters.unitofwork import IUnitOfWork
 
 
 class TodoService:

@@ -1,13 +1,12 @@
-from fastapi import APIRouter, Security, HTTPException
+from fastapi import APIRouter, Security
 
 from src.api.dependencies import UOWDep
-from src.config import JWT_SECRET_KEY
 from src.schemas.users import ResponseSchema
-from src.repositories.auth_repo import JWTBearer, JWTRepo
+from src.repositories.auth_repo import JWTBearer
 from fastapi.security import HTTPAuthorizationCredentials
 
-from src.services.users import UsersService
-from src.utils.decorators import token_required
+from src.services.user_service import UsersService
+from src.adapters.decorators import token_required
 
 router = APIRouter(
     prefix="/users",
@@ -15,10 +14,10 @@ router = APIRouter(
 )
 
 
-@router.get("")
+@router.get("", response_model=ResponseSchema, response_model_exclude_none=True)
 async def get_users(uow: UOWDep):
-    users = await UsersService().get_users(uow)
-    return users
+    result = await UsersService().get_users(uow)
+    return ResponseSchema(detail='Success', result=result)
 
 
 @router.get("/me", response_model=ResponseSchema, response_model_exclude_none=True)

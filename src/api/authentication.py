@@ -2,6 +2,7 @@ import jose
 from fastapi import APIRouter, Depends, Security, HTTPException
 from fastapi.security import HTTPAuthorizationCredentials
 from starlette import status
+from starlette.background import BackgroundTasks
 
 from src.api.dependencies import UOWDep
 from src.config import JWT_REFRESH_SECRET_KEY
@@ -18,9 +19,10 @@ router = APIRouter(
 @router.post("/register", response_model=ResponseSchema, response_model_exclude_none=True)
 async def register(
         request: UserSchemaAdd,
+        background_tasks: BackgroundTasks,
         uow: UOWDep
 ):
-    result = await AuthService.register_service(uow, request)
+    result = await AuthService.register_service(uow, background_tasks, request)
     return ResponseSchema(detail="Data saved", result=result)
 
 
