@@ -4,7 +4,7 @@ from typing import AsyncGenerator
 import pytest
 from fastapi.testclient import TestClient
 from httpx import AsyncClient
-from src.config import MODE, DB_NAME
+from src.config import MODE
 from src.db.db import Base, engine
 from src.main import app
 
