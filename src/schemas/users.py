@@ -1,6 +1,6 @@
 from typing import Optional, TypeVar
 
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, EmailStr, Field
 
 T = TypeVar('T')
 
@@ -15,7 +15,7 @@ class UserSchema(BaseModel):
 
 
 class UserSchemaAdd(BaseModel):
-    username: str
+    username: str = Field(..., json_schema_extra={"username": 'Username'}, max_length=20, min_length=3)
     email: EmailStr
     password: str
 

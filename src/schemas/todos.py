@@ -17,8 +17,8 @@ class TodoOut(BaseModel):
 
 
 class TodoSchema(BaseModel):
-    title: str = Field(..., title='Title', max_length=55, min_length=1)
-    description: str = Field(..., description='Description', max_length=755, min_length=1)
+    title: str = Field(..., json_schema_extra={"title": 'Title'}, max_length=55, min_length=1)
+    description: str = Field(..., json_schema_extra={"description": 'Description'}, max_length=755, min_length=1)
     status: Optional[bool] = False
 
     def to_dict(self):

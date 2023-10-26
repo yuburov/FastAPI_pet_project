@@ -3,6 +3,7 @@ virtualenv
 .idea
 .env
 .test.env
+.pytest_cache
 .vscode
 .DS_Store
 __pycache__
