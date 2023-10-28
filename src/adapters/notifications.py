@@ -2,7 +2,7 @@ import abc
 import smtplib
 from email.message import EmailMessage
 
-from src.config import SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASSWORD
+from config import SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASSWORD
 
 
 class AbstractNotifications(abc.ABC):

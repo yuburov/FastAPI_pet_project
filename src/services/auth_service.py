@@ -5,14 +5,14 @@ from jose import jwt
 from passlib.context import CryptContext
 from starlette.background import BackgroundTasks
 
-from src.config import JWT_SECRET_KEY, ALGORITHM
-from src.models.tokens import TokenTable
-from src.models.users import User
-from src.repositories.auth_repo import JWTRepo
-from src.schemas.users import UserSchemaAdd, RequestDetails
-from src.services.token_service import TokenService
-from src.adapters.notifications import EmailNotifications
-from src.adapters.unitofwork import IUnitOfWork
+from config import JWT_SECRET_KEY, ALGORITHM
+from models.tokens import TokenTable
+from models.users import User
+from repositories.auth_repo import JWTRepo
+from schemas.users import UserSchemaAdd, RequestDetails
+from services.token_service import TokenService
+from adapters.notifications import EmailNotifications
+from adapters.unitofwork import IUnitOfWork
 
 # Encrypt password
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")

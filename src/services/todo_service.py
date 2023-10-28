@@ -1,10 +1,10 @@
-from src.config import JWT_SECRET_KEY
-from src.models.todos import Todo
+from config import JWT_SECRET_KEY
+from models.todos import Todo
 from typing import List
 
-from src.repositories.auth_repo import JWTRepo
-from src.schemas.todos import TodoSchema
-from src.adapters.unitofwork import IUnitOfWork
+from repositories.auth_repo import JWTRepo
+from schemas.todos import TodoSchema
+from adapters.unitofwork import IUnitOfWork
 
 
 class TodoService:

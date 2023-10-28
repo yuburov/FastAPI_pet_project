@@ -3,8 +3,8 @@ from datetime import datetime
 from sqlalchemy import String, Boolean
 from sqlalchemy.orm import Mapped, mapped_column
 
-from src.db.db import Base
-from src.schemas.tokens import TokenCreate
+from db.db import Base
+from schemas.tokens import TokenCreate
 
 
 class TokenTable(Base):

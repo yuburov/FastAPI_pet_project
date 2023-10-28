@@ -1,12 +1,12 @@
 from fastapi import APIRouter, Security
 
-from src.api.dependencies import UOWDep
-from src.schemas.users import ResponseSchema
-from src.repositories.auth_repo import JWTBearer
+from api.dependencies import UOWDep
+from schemas.users import ResponseSchema
+from repositories.auth_repo import JWTBearer
 from fastapi.security import HTTPAuthorizationCredentials
 
-from src.services.user_service import UsersService
-from src.adapters.decorators import token_required
+from services.user_service import UsersService
+from adapters.decorators import token_required
 
 router = APIRouter(
     prefix="/users",

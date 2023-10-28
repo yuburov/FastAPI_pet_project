@@ -4,11 +4,11 @@ from fastapi.security import HTTPAuthorizationCredentials
 from starlette import status
 from starlette.background import BackgroundTasks
 
-from src.api.dependencies import UOWDep
-from src.config import JWT_REFRESH_SECRET_KEY
-from src.repositories.auth_repo import JWTBearer
-from src.schemas.users import ResponseSchema, UserSchemaAdd, RequestDetails
-from src.services.auth_service import AuthService
+from api.dependencies import UOWDep
+from config import JWT_REFRESH_SECRET_KEY
+from repositories.auth_repo import JWTBearer
+from schemas.users import ResponseSchema, UserSchemaAdd, RequestDetails
+from services.auth_service import AuthService
 
 router = APIRouter(
     prefix="/auth",

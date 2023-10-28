@@ -1,5 +1,5 @@
-from src.models.tokens import TokenTable
-from src.adapters.repository import SQLAlchemyRepository
+from models.tokens import TokenTable
+from adapters.repository import SQLAlchemyRepository
 
 
 class TokenRepository(SQLAlchemyRepository):

@@ -1,12 +1,12 @@
 from fastapi import APIRouter, Security
 from fastapi.security import HTTPAuthorizationCredentials
 
-from src.api.dependencies import UOWDep
-from src.repositories.auth_repo import JWTBearer
-from src.schemas.todos import TodoSchema
-from src.schemas.users import ResponseSchema
-from src.services.todo_service import TodoService
-from src.adapters.decorators import token_required
+from api.dependencies import UOWDep
+from repositories.auth_repo import JWTBearer
+from schemas.todos import TodoSchema
+from schemas.users import ResponseSchema
+from services.todo_service import TodoService
+from adapters.decorators import token_required
 
 router = APIRouter(
     prefix="/todo",

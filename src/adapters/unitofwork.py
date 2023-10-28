@@ -1,10 +1,10 @@
 from abc import ABC, abstractmethod
 from typing import Type
 
-from src.db.db import async_session_maker
-from src.repositories.todos import TodosRepository
-from src.repositories.tokens import TokenRepository
-from src.repositories.users import UsersRepository
+from db.db import async_session_maker
+from repositories.todos import TodosRepository
+from repositories.tokens import TokenRepository
+from repositories.users import UsersRepository
 
 
 class IUnitOfWork(ABC):

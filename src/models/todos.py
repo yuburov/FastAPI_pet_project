@@ -2,8 +2,8 @@ from datetime import datetime
 from sqlalchemy import String, Boolean, ForeignKey, Integer
 from sqlalchemy.orm import Mapped, mapped_column
 
-from src.db.db import Base
-from src.schemas.todos import TodoSchema, TodoOut
+from db.db import Base
+from schemas.todos import TodoSchema, TodoOut
 
 
 class Todo(Base):

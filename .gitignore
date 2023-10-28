@@ -3,6 +3,7 @@ virtualenv
 .idea
 .env
 .test.env
+.env-non-dev
 .pytest_cache
 .vscode
 .DS_Store

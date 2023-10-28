@@ -1,9 +1,9 @@
 from datetime import datetime
 
-from src.config import JWT_SECRET_KEY, JWT_REFRESH_SECRET_KEY
-from src.models.tokens import TokenTable
-from src.repositories.auth_repo import JWTRepo
-from src.adapters.unitofwork import IUnitOfWork
+from config import JWT_SECRET_KEY, JWT_REFRESH_SECRET_KEY
+from models.tokens import TokenTable
+from repositories.auth_repo import JWTRepo
+from adapters.unitofwork import IUnitOfWork
 
 
 class TokenService:

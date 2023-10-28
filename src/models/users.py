@@ -1,8 +1,8 @@
 from sqlalchemy import String
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from src.db.db import Base
-from src.schemas.users import UserSchema
+from db.db import Base
+from schemas.users import UserSchema
 
 
 class User(Base):
