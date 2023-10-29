@@ -37,9 +37,10 @@ def upgrade() -> None:
                     )
     op.create_table('todos',
                     sa.Column('id', sa.Integer(), nullable=False),
-                    sa.Column('title', sa.String(), nullable=True),
+                    sa.Column('title', sa.String(), nullable=False),
                     sa.Column('description', sa.String(), nullable=False),
                     sa.Column('status', sa.Boolean(), nullable=False),
+                    sa.Column('priority', sa.String(), nullable=False),
                     sa.Column('created_at', sa.DateTime(), nullable=False),
                     sa.Column('updated_at', sa.DateTime(), nullable=False),
                     sa.Column('user_id', sa.String(), nullable=False),
